@@ -61,7 +61,7 @@ function resetClock() {
     face.innerText = '00:00:00';
   }
   
-  function finalizarClock() {
+function finalizarClock() {
     isPaused = true;
     var elapsed = new Date() - startDate - elapsedPaused;
     var parts = [];

@@ -24,9 +24,9 @@ html {
 }
 
 .face h2 {
-    font-weight: 300;
-    color: silver;
-    font-size: 20px;
+    color: rgb(255, 255, 255);
+    font-size: 30px;
+    font-weight: bolder;
 }
 
 .face p {
@@ -251,3 +251,4 @@ background-color: #007EA7;
 .tempo-gasto{
     color: aliceblue;
 }
+
