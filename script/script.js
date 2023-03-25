@@ -16,7 +16,7 @@ var requestsAnimationFrame = (function(){
 }())
 
 function startClock(){
-    if(!startDate){
+    if(!startDate || isPaused){ // verifica se o cronômetro não está em andamento ou está pausado
         startDate = new Date()
     }
     isPaused = false;
@@ -28,16 +28,6 @@ function pauseClock(){
     elapsedPaused = new Date() - startDate;
 }
 
-function toggleClock(){
-    if(isPaused){
-        startDate = new Date() - elapsedPaused;
-        isPaused = false;
-        tick()
-    }
-    else {
-        isPaused = true;
-    }
-}
 
 function tick(){
     var now = new Date();
