@@ -8,8 +8,13 @@ var defaults = {}
 , elapsedTotal = 0 // nova variável para armazenar o tempo total decorrido
 , face = document.getElementById('screen')
 , isPaused = false;
-
 var counter = 0;
+var icounter = 0;
+
+var clearLogButton = document.getElementById('clear-log-button');
+clearLogButton.addEventListener('click', clearLog);
+
+
 var requestsAnimationFrame = (function(){
     return (callback) => {
         window.setTimeout(callback, 1000 / 60); // 60 fps
@@ -17,18 +22,18 @@ var requestsAnimationFrame = (function(){
 }())
 
 function startClock(){
-    if(!startDate || isPaused){ // verifica se o cronômetro não está em andamento ou está pausado
-        startDate = new Date()
+    if(startDate && !isPaused){ // Verifica se o cronômetro já está em andamento
+        return;
     }
+    startDate = new Date();
     isPaused = false;
-    tick()
+    tick();
 }
 
 function pauseClock(){
     isPaused = true;
-    elapsedPaused = new Date() - startDate;
+    elapsedPaused = now - startDate - elapsedTotal; // atualiza elapsedPaused com a diferença correta
 }
-
 
 function tick(){
     var now = new Date();
@@ -45,6 +50,7 @@ function resetClock() {
     elapsedPaused = 0;
     elapsedTotal = 0;
     face.innerText = '00:00:00';
+    isPaused = true; 
 }
 
 function finalizarClock() {
@@ -66,6 +72,18 @@ function formatTime(time) {
     parts[2] = ('' + Math.floor(((time % one_hour) % one_minute) / one_second)).padStart(2, '0');
     
     return parts.join(':');
+}
+
+function clearLog() {
+    var log = document.getElementById('log');
+    while (log.firstChild) {
+        log.removeChild(log.firstChild);
+    }
+    resetClock();
+    counter = 0;
+    face.innerText = '00:00:00'; // Limpa o tempo na tela
+    isPaused = true; // Define o cronômetro como pausado
+    startClock()
 }
 
 startClock();
