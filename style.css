@@ -91,3 +91,68 @@ html {
 .timer ,hand:first-child{
     transform: rotate(180deg);
 }
+
+.timer ,hand span{
+    animation-duration: 4s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+
+.timer ,hand:first-child span{
+    animation-name: spin1;
+}
+
+.timer ,hand:last-child span{
+    animation-name: spin2;
+}
+
+.timer.second{
+    background: rgba(0, 0, 0, .2);
+    height: 300px;
+    width: 300px;
+    left: 50px;
+    top: 50px;
+}
+
+.timer.second .hand span{
+    animation-duration: 1s;
+    border-top-color: rgba(255, 255, 255, .15);
+    border-right-color: rgba(255, 255, 255, .15);
+    border-width: 150px;
+}
+
+.timer.second:after{
+    height: 296px;
+    left: 2px;
+    width: 296px;
+    top: 2px;
+}
+
+.timer.minute{
+    background-color: rgba(0, 0, 0, .2);
+    height: 350px;
+    left: 25px;
+    width: 350px;
+    top: 25px;
+}
+
+.timer.minute .hand.span{
+    animation-duration: 60s;
+    border-top-color: rgba(0, 255, 255, .4);
+    border-right-color: rgba(0, 255, 255, .4);
+    border-width: 175px;
+}
+
+.timer.minute:after{
+    height: 310px;
+    left: 20px;
+    width: 310px;
+    top: 20px;
+}
+
+.timer.hour{
+    background: rgba(0, 0, 0, .3);
+    height: 400px;
+    left: 0;
+    width: 400px;
+}
