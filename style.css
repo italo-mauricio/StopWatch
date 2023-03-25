@@ -11,8 +11,30 @@ html {
 }
 
 .face{
-    background: rgba(0, 0, 0, 1);
-    border-radius: 50px;
+    background: rgba(0, 0, 0, .1);
+    border-radius: 50%;
     height: 296px;
+    width: 296px;
+    left: 52px;
+    padding: 165px 40px 0;
+    position: absolute;
+    text-align: center;
+    top: 52px;
 
+}
+
+.face h2 {
+    font-weight: 300;
+    color: silver;
+    font-size: 20px;
+}
+
+.face p {
+    border-radius: 20px;
+    font-size: 60px;
+    font-weight: 400;
+    position: absolute;
+    top: 17px;
+    width: 260px;
+    left: 20px;
 }
