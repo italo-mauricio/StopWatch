@@ -3,8 +3,10 @@ var defaults = {}
 , one_minute = one_second * 60
 , one_hour = one_minute * 60
 , one_day = one_hour * 24
-, startDate = new Date()
+, startDate = null
+, elapsedPaused = 0 // nova variável para armazenar o tempo decorrido durante a pausa
 , face = document.getElementById('screen')
+, isPaused = false;
 
 var requestsAnimationFrame = (function(){
     return (callback) => {
@@ -12,7 +14,35 @@ var requestsAnimationFrame = (function(){
     };
 }())
 
+
+function startClock(){
+    if(!startDate){
+        startDate = new Date()
+    }
+    isPaused = false;
+    tick()
+}
+
+function pauseClock(){
+    isPaused = true;
+    elapsedPaused = new Date() - startDate; // armazena o tempo decorrido até o momento da pausa
+}
+
+function toggleClock(){
+    if(isPaused){
+        startDate = new Date() - elapsedPaused; // atualiza a data de início do cronômetro com o tempo decorrido durante a pausa
+        isPaused = false;
+        tick()
+    }
+    else {
+        isPaused = true;
+    }
+}
+
 function tick(){
+    if(isPaused){
+        return;
+    }
     var now = new Date()
     , elapsed = now - startDate
     , parts = [];
@@ -25,4 +55,4 @@ function tick(){
     requestsAnimationFrame(tick)
 }
 
-tick()
+startClock()

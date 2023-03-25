@@ -9,6 +9,9 @@
 </head>
 <body>
     <div class="timer-group">
+        <div id="timer-hand" class="hand">
+            <span></span>
+          </div>
         <div class="timer hour">
             <div class="hand"><span></span></div>
             <div class="hand"><span></span></div>
@@ -21,11 +24,21 @@
             <div class="hand"><span></span></div>
             <div class="hand"><span></span></div>
         </div>
+        
         <div class="face">
             <h2>Stop Watch</h2>
             <p id="screen">00:00:00</p>
         </div>
+        
+        
     </div>
+    <div>
+        <span id="screen"></span>
+        <br>
+        <button class="botão" onclick="pauseClock()">Pausar</button>
+        <button class="botão" onclick="toggleClock()">Iniciar</button>
+    </div>
+    
     
 </body>
 <script src="script.js"></script>
