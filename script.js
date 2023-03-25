@@ -18,7 +18,7 @@ function tick(){
     , parts = [];
 
     parts[0] = ('' + Math.floor(elapsed / one_hour)).padStart(2, '0');
-    parts[1] = ('' + Math.floor((elapsed % one_hour)) / one_minute).padStart(2, '0');
+    parts[1] = ('' + Math.floor((elapsed % one_hour) / one_minute)).padStart(2, '0');
     parts[2] = ('' + Math.floor(( (elapsed % one_hour) % one_minute) / one_second)).padStart(2, '0');
 
     face.innerText = parts.join(':');
