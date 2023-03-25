@@ -4,7 +4,8 @@ var defaults = {}
 , one_hour = one_minute * 60
 , one_day = one_hour * 24
 , startDate = null
-, elapsedPaused = 0 // nova variável para armazenar o tempo decorrido durante a pausa
+, elapsedPaused = 0
+, elapsedTotal = 0 // nova variável para armazenar o tempo total decorrido
 , face = document.getElementById('screen')
 , isPaused = false;
 
@@ -13,7 +14,6 @@ var requestsAnimationFrame = (function(){
         window.setTimeout(callback, 1000 / 60); // 60 fps
     };
 }())
-
 
 function startClock(){
     if(!startDate){
@@ -25,12 +25,12 @@ function startClock(){
 
 function pauseClock(){
     isPaused = true;
-    elapsedPaused = new Date() - startDate; // armazena o tempo decorrido até o momento da pausa
+    elapsedPaused = new Date() - startDate;
 }
 
 function toggleClock(){
     if(isPaused){
-        startDate = new Date() - elapsedPaused; // atualiza a data de início do cronômetro com o tempo decorrido durante a pausa
+        startDate = new Date() - elapsedPaused;
         isPaused = false;
         tick()
     }
@@ -40,37 +40,39 @@ function toggleClock(){
 }
 
 function tick(){
-    if(isPaused){
-        return;
+    var now = new Date();
+    elapsedTotal += now - startDate - elapsedPaused;
+    if(!isPaused){
+        face.innerText = formatTime(elapsedTotal);
+        requestsAnimationFrame(tick);
     }
-    var now = new Date()
-    , elapsed = now - startDate
-    , parts = [];
-
-    parts[0] = ('' + Math.floor(elapsed / one_hour)).padStart(2, '0');
-    parts[1] = ('' + Math.floor((elapsed % one_hour) / one_minute)).padStart(2, '0');
-    parts[2] = ('' + Math.floor(( (elapsed % one_hour) % one_minute) / one_second)).padStart(2, '0');
-
-    face.innerText = parts.join(':');
-    requestsAnimationFrame(tick)
+    startDate = now;
 }
 
 function resetClock() {
     startDate = null;
     elapsedPaused = 0;
+    elapsedTotal = 0;
     face.innerText = '00:00:00';
-  }
-  
+}
+
 function finalizarClock() {
     isPaused = true;
-    var elapsed = new Date() - startDate - elapsedPaused;
-    var parts = [];
-    parts[0] = ('' + Math.floor(elapsed / one_hour)).padStart(2, '0');
-    parts[1] = ('' + Math.floor((elapsed % one_hour) / one_minute)).padStart(2, '0');
-    parts[2] = ('' + Math.floor(((elapsed % one_hour) % one_minute) / one_second)).padStart(2, '0');
-    var time = parts.join(':');
-    alert('Tempo total decorrido: ' + time);
+    var time = formatTime(elapsedTotal);
     resetClock();
     startClock();
-  }
-startClock()
+    var logEntry = document.createElement('p');
+    logEntry.innerText = `Tempo total decorrido: ${time}`;
+    var log = document.getElementById('log');
+    log.appendChild(logEntry);
+}
+
+function formatTime(time) {
+    var parts = [];
+    parts[0] = ('' + Math.floor(time / one_hour)).padStart(2, '0');
+    parts[1] = ('' + Math.floor((time % one_hour) / one_minute)).padStart(2, '0');
+    parts[2] = ('' + Math.floor(((time % one_hour) % one_minute) / one_second)).padStart(2, '0');
+    return parts.join(':');
+}
+
+startClock();
