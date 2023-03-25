@@ -9,6 +9,7 @@ var defaults = {}
 , face = document.getElementById('screen')
 , isPaused = false;
 
+var counter = 0;
 var requestsAnimationFrame = (function(){
     return (callback) => {
         window.setTimeout(callback, 1000 / 60); // 60 fps
@@ -52,7 +53,8 @@ function finalizarClock() {
     resetClock();
     startClock();
     var logEntry = document.createElement('p');
-    logEntry.innerText = `Tempo total decorrido: ${time}`;
+    counter += 1;
+    logEntry.innerText = `Finalização: ${counter}\nTempo total decorrido: ${time}`;
     var log = document.getElementById('log');
     log.appendChild(logEntry);
 }
@@ -62,6 +64,7 @@ function formatTime(time) {
     parts[0] = ('' + Math.floor(time / one_hour)).padStart(2, '0');
     parts[1] = ('' + Math.floor((time % one_hour) / one_minute)).padStart(2, '0');
     parts[2] = ('' + Math.floor(((time % one_hour) % one_minute) / one_second)).padStart(2, '0');
+    
     return parts.join(':');
 }
 
