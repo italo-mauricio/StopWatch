@@ -200,23 +200,26 @@ html {
     }
 }
 
-.botão {
+
+.bottom {
     background-color: rgba(0, 255, 255, .4);
     border: none;
     color: white;
     border-radius: 20px;
-    padding: 10px;
+    padding: auto;
     text-align: center;
     text-decoration:none;
     display: inline-block;
-    font-size: 16px;
-    margin: auto;
+    font-size: 20px;
+    font-family:'Times New Roman', Times, serif;
+    margin: auto; /* adicionado para separar os botões */
     cursor: pointer;
     width: 100px;
     height: 40px;
-  }
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.473);
+}
 
-.botão:hover {
+.bottom:hover {
     background-color: #3e8e41;
 }
 

@@ -55,17 +55,22 @@ function tick(){
     requestsAnimationFrame(tick)
 }
 
-function finalizarClock() {
+function resetClock() {
+    startDate = null;
+    elapsedPaused = 0;
+    face.innerText = '00:00:00';
+  }
+  
+  function finalizarClock() {
     isPaused = true;
     var elapsed = new Date() - startDate - elapsedPaused;
     var parts = [];
     parts[0] = ('' + Math.floor(elapsed / one_hour)).padStart(2, '0');
     parts[1] = ('' + Math.floor((elapsed % one_hour) / one_minute)).padStart(2, '0');
-    parts[2] = ('' + Math.floor(( (elapsed % one_hour) % one_minute) / one_second)).padStart(2, '0');
+    parts[2] = ('' + Math.floor(((elapsed % one_hour) % one_minute) / one_second)).padStart(2, '0');
     var time = parts.join(':');
-    alert("Tempo total decorrido: " + time);
-    const tempoGasto = `Tempo gasto: ${formatTime(elapsed)}`;
-    document.getElementsByClassName('tempo-gasto').textContent = tempoGasto;
-}
-
+    alert('Tempo total decorrido: ' + time);
+    resetClock();
+    startClock();
+  }
 startClock()
