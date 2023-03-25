@@ -204,19 +204,20 @@ html {
     background-color: rgba(0, 255, 255, .4);
     border: none;
     color: white;
+    border-radius: 20px;
     padding: 10px;
     text-align: center;
-    text-decoration: none;
-    display: block;
+    text-decoration:none;
+    display: inline-block;
     font-size: 16px;
     margin: auto;
     cursor: pointer;
     width: 100px;
     height: 40px;
   }
-  
+
 .botão:hover {
-background-color: #3e8e41;
+    background-color: #3e8e41;
 }
 
 #start {
@@ -243,3 +244,7 @@ background-color: #008CBA;
 background-color: #007EA7;
 }
 
+
+.tempo-gasto{
+    color: aliceblue;
+}
