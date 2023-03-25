@@ -1,0 +1,18 @@
+* {
+    box-sizing:border-box;
+
+}
+
+html {
+    background: #111;
+    color: #fff;
+    font-family: sans-serif;
+    padding: 20px;
+}
+
+.face{
+    background: rgba(0, 0, 0, 1);
+    border-radius: 50px;
+    height: 296px;
+
+}
