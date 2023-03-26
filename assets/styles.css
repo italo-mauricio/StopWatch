@@ -228,7 +228,7 @@ html {
 
   
   #log {
-    background-color: white;
+    background: rgba(0, 0, 0, .1);
     width: 70%;
     margin: 0 auto;
     border: 1px solid #ccc;
@@ -238,7 +238,7 @@ html {
   }
 
   #log p {
-    color: #111;
+    color: #ffffff;
     font-size: large;
     margin: 0;
     padding: 0.5rem;
