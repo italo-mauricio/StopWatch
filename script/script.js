@@ -13,6 +13,7 @@ var icounter = 0;
 
 var clearLogButton = document.getElementById('clear-log-button');
 clearLogButton.addEventListener('click', clearLog);
+var minuteHand = document.querySelector('.timer.minute');
 
 
 var requestsAnimationFrame = (function(){
@@ -25,8 +26,10 @@ function startClock(){
     if(startDate && !isPaused){ // Verifica se o cronômetro já está em andamento
         return;
     }
+
     startDate = new Date();
     isPaused = false;
+
     tick();
 }
 
@@ -86,4 +89,5 @@ function clearLog() {
     startClock()
 }
 
+pauseClock();
 startClock();
