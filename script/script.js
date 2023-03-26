@@ -24,10 +24,8 @@ var requestsAnimationFrame = (function(){
 
 function startClock(){
     if(startDate && !isPaused){ // Verifica se o cronômetro já está em andamento  
-        animElement.style.animationPlayState = running;
         return;
     }
-
     startDate = new Date();
     isPaused = false;
     tick();  
@@ -36,7 +34,7 @@ function startClock(){
 function pauseClock(){
     isPaused = true;
     elapsedPaused = now - startDate - elapsedTotal; // atualiza elapsedPaused com a diferença correta
-    animElement.style.animationPlayState = 'paused';
+
 }
 
 function tick(){
@@ -66,9 +64,10 @@ function finalizarClock() {
     counter += 1;
     var currentDate = new Date();
     var formattedDate = `${currentDate.getDate()}/${currentDate.getMonth() + 1}/${currentDate.getFullYear()}`;
-    logEntry.innerText = `Finalização: ${counter}\nData: ${formattedDate}\nTempo total decorrido: ${time}`;
+    logEntry.innerText = `Completion: ${counter}\nCount date: ${formattedDate}\nTotal elapsed time: ${time}`;
     var log = document.getElementById('log');
     log.appendChild(logEntry);
+    pauseClock();
 }
 
 function formatTime(time) {
@@ -89,6 +88,7 @@ function clearLog() {
     counter = 0;
     face.innerText = '00:00:00'; // Limpa o tempo na tela
     isPaused = true; // Define o cronômetro como pausado
+    pauseClock()
     startClock()
 }
 
