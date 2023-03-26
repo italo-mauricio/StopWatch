@@ -13,7 +13,7 @@ var icounter = 0;
 
 var clearLogButton = document.getElementById('clear-log-button');
 clearLogButton.addEventListener('click', clearLog);
-var minuteHand = document.querySelector('.timer.minute');
+var animElement = document.querySelector('.timer.minute .hand span');
 
 
 var requestsAnimationFrame = (function(){
@@ -23,19 +23,20 @@ var requestsAnimationFrame = (function(){
 }())
 
 function startClock(){
-    if(startDate && !isPaused){ // Verifica se o cronômetro já está em andamento
+    if(startDate && !isPaused){ // Verifica se o cronômetro já está em andamento  
+        animElement.style.animationPlayState = running;
         return;
     }
 
     startDate = new Date();
     isPaused = false;
-
-    tick();
+    tick();  
 }
 
 function pauseClock(){
     isPaused = true;
     elapsedPaused = now - startDate - elapsedTotal; // atualiza elapsedPaused com a diferença correta
+    animElement.style.animationPlayState = 'paused';
 }
 
 function tick(){
@@ -63,7 +64,9 @@ function finalizarClock() {
     startClock();
     var logEntry = document.createElement('p');
     counter += 1;
-    logEntry.innerText = `Finalização: ${counter}\nTempo total decorrido: ${time}`;
+    var currentDate = new Date();
+    var formattedDate = `${currentDate.getDate()}/${currentDate.getMonth() + 1}/${currentDate.getFullYear()}`;
+    logEntry.innerText = `Finalização: ${counter}\nData: ${formattedDate}\nTempo total decorrido: ${time}`;
     var log = document.getElementById('log');
     log.appendChild(logEntry);
 }
