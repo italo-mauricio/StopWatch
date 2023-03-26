@@ -1,3 +1,7 @@
+var counter = 0;
+var icounter = 0;
+var clearLogButton = document.getElementById('clear-log-button');
+clearLogButton.addEventListener('click', clearLog);
 var defaults = {}
 , one_second = 1000
 , one_minute = one_second * 60
@@ -8,19 +12,15 @@ var defaults = {}
 , elapsedTotal = 0 // nova variável para armazenar o tempo total decorrido
 , face = document.getElementById('screen')
 , isPaused = false;
-var counter = 0;
-var icounter = 0;
-
-var clearLogButton = document.getElementById('clear-log-button');
-clearLogButton.addEventListener('click', clearLog);
-var animElement = document.querySelector('.timer.minute .hand span');
-
 
 var requestsAnimationFrame = (function(){
-    return (callback) => {
-        window.setTimeout(callback, 1000 / 60); // 60 fps
-    };
-}())
+    return window.requestAnimationFrame ||
+           window.webkitRequestAnimationFrame ||
+           window.mozRequestAnimationFrame ||
+           function(callback){
+               window.setTimeout(callback, 1000/60);
+           };
+}());
 
 function startClock(){
     if(startDate && !isPaused){ // Verifica se o cronômetro já está em andamento  
@@ -34,7 +34,6 @@ function startClock(){
 function pauseClock(){
     isPaused = true;
     elapsedPaused = now - startDate - elapsedTotal; // atualiza elapsedPaused com a diferença correta
-
 }
 
 function tick(){

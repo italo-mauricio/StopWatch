@@ -1,6 +1,5 @@
 * {
     box-sizing:border-box;
-
 }
 
 html {
@@ -21,10 +20,6 @@ html {
     text-align: center;
     top: 52px;
 
-}
-
-.clock.paused {
-    animation-play-state: paused;
 }
 
 .face h2 {
@@ -90,7 +85,6 @@ html {
     top: 0;
     transform: rotate(225deg);
     width: 0;
-   
 }
 
 .timer .hand:first-child{
@@ -98,9 +92,9 @@ html {
 }
 
 .timer .hand span{
-    animation-duration: 4s;
-    animation-iteration-count: infinite;
-    animation-timing-function: linear;
+    animation-duration: 33.33ms;
+    animation-iteration-count:infinite;
+    animation-timing-function:linear;
 }
 
 .timer .hand:first-child span{
@@ -142,7 +136,6 @@ html {
 }
 
 .timer.minute .hand span{
-
     animation-duration: 60s;
     animation-play-state: running;
     border-top-color: rgba(0, 255, 255, .4);
@@ -210,7 +203,7 @@ html {
     text-align: center;
   }
 
-  button {
+button {
     font-size: 1rem;
     padding: 1px;
     border-radius: 0.5rem;
@@ -229,7 +222,7 @@ html {
   }
 
   
-  #log {
+#log {
     background: rgba(0, 0, 0, .1);
     width: 70%;
     margin: 0 auto;
@@ -237,15 +230,16 @@ html {
     border-radius: 0.5rem;
     padding: 1em;
     font-size: 1.2rem;
-  }
+}
 
-  #log p {
+#log p {
     color: #ffffff;
     font-size: large;
     margin: 0;
     padding: 0.5rem;
     border-bottom: 1px solid #ccc;
-  }
+}
+
 button:hover {
     background-color: #3e8e41;
 }
