@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>stop watch</title>
-    <link rel="stylesheet" href="assets/style.css">
+    <link rel="stylesheet" href="assets/styles.css">
     <link rel="shortcut icon" href="image/relogio.png" type="image/x-icon">
 </head>
 <body>
@@ -32,13 +32,13 @@
         </div>
               
     </div>
-    <div>
-        
-        <span id="screen"></span><br>
-        <button class="bottom" onclick="startClock()">Iniciar</button>
-        <button class="bottom" onclick="pauseClock()">Pausar</button>
-        <button class="bottom" onclick="finalizarClock()"">Finalizar</button>
-        <button id="clear-log-button">Limpar log</button>
+    
+    <div id="buttons">
+      <span id="screen"></span><br>
+      <button onclick="startClock()">Iniciar</button>
+      <button onclick="pauseClock()">Pausar</button>
+      <button onclick="finalizarClock()">Finalizar</button>
+      <button id="clear-log-button" onclick="limparLog()">Limpar</button>
     </div>
     <h2>
         <div class="tempo-gasto"></div>  
