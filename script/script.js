@@ -89,7 +89,7 @@ function clearLog() {
     face.innerText = '00:00:00'; // Limpa o tempo na tela
     isPaused = true; // Define o cronômetro como pausado
     pauseClock()
-    startClock()
+    
 }
 
 pauseClock();
